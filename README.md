@@ -1,2 +1,0 @@
-# OneDon
-Donation App
