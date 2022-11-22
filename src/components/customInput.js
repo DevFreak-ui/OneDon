@@ -7,17 +7,25 @@
 import React  from "react";
 import { View, Text, TextInput, StyleSheet, ProgressViewIOSComponent } from "react-native";
 import Colors from "../colors";
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
 
-const TypeAInput = ({label, iconName}) => {
+const TypeAInput = ({label, iconName, password}) => {
+
+    const [hidePassword, setHidePassword] = React.useState(password);
+
     return(
-        <View style={{marginTop: 90}}>
+        <View style={{marginBottom: 20}}>
             <Text style={{fontSize: 18, fontWeight: 'bold', color: Colors.light, marginVertical: 10}}>
                 {label}
             </Text>
-            <View>
-                
-                <TextInput style={styles.inputContainer}></TextInput>
+            <View style={styles.inputContainer}>
+                <Icon name={iconName} size={15}/>
+                <TextInput 
+                    secureTextEntry={hidePassword}
+                    style={styles.inputContent}
+                    autoCorrect={false}
+                    ></TextInput>
             </View>
         </View>
     );
@@ -38,9 +46,16 @@ const TypeBInput = () =>{
 const styles = StyleSheet.create({
     inputContainer: {
         backgroundColor: '#F1F1F1', 
-        height: 55, 
+        height: 50, 
         borderRadius: 10,
         flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 15
+    },
+    inputContent: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        flex: 1,
         paddingHorizontal: 15
     }
 })
