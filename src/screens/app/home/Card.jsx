@@ -4,21 +4,21 @@ import fontStyle from '../../../utils/fontStyles'
 import { SimpleLineIcons } from '@expo/vector-icons'
 import Colors from '../../../utils/colors'
 
-const Card = () => {
+const Card = ({details}) => {
   return (
     <Pressable style={styles.container}>
-        <Image source={require("../../../../assets/images/cardImage.jpg")} resizeMode="cover" style={styles.image} />
+        <Image source={details.image} resizeMode="cover" style={styles.image} />
       <View style={styles.details}>
-        <Text style={styles.title}>Slightly worn pair of German made Sneakers</Text>
+        <Text style={styles.title}>{details.title}</Text>
         <View style={styles.row}>
             <View style={[styles.row,{width:'75%'}]} >
                 <SimpleLineIcons name="location-pin" size={14} color={Colors.primary} />
-                <Text style={styles.location} numberOfLines={1} ellipsizeMode="tail">South Side NMU</Text>
+                <Text style={styles.location} numberOfLines={1} ellipsizeMode="tail">{details.location}</Text>
             </View>
 
             <View style={styles.row}>
             <SimpleLineIcons name="layers" size={14} color={Colors.primary} />
-                <Text style={styles.location} numberOfLines={1} ellipsizeMode="tail">2</Text>
+                <Text style={styles.location} numberOfLines={1} ellipsizeMode="tail">{details.quantity}</Text>
             </View>
         </View>
       </View>
