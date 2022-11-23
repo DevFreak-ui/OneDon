@@ -17,11 +17,11 @@ const Header = () => {
       <View style={styles.row}>
         <Text style={styles.text}>What</Text>
         <View style={styles.highlight}>
-            <Text style={styles.text}>Goes</Text>
+            <Text style={[styles.text,fontStyle.bold]}>Goes</Text>
         </View>
         <Text style={styles.text}>Around,</Text>
         <View style={styles.highlight}>
-            <Text style={styles.text}>Comes</Text>
+            <Text style={[styles.text,fontStyle.bold]}>Comes</Text>
         </View>
         <Text style={styles.text}>Around</Text>
 
@@ -42,15 +42,15 @@ const styles = StyleSheet.create({
     },
     highlight:{
         backgroundColor:Colors.primary,
-        paddingHorizontal:5,
+        paddingHorizontal:2,
         borderRadius:8,
-        paddingVertical:3
+        paddingVertical:2,
     },
     text:{
-        ...fontStyle.semibold,
+        ...fontStyle.medium,
         color:Colors.typeAColor,
         fontSize:18,
-        paddingHorizontal:2
+        marginHorizontal:3
     },
     bottom:{
         position:'absolute',
