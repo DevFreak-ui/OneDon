@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import fontStyle from '../../../utils/fontStyles'
 
 // add your categories here
-const categories = ['all','books','clothing','gudgets','others']
+const categories = ['all','books','clothing','gadgets','others']
 
 const Categories = () => {
     const [activeCategory,setActiveCategory] = useState('all')
@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     },
     content:{
         justifyContent:'center',
-        paddingRight:30
+        paddingRight:30,
+        height:40
         
     },
     container:{
