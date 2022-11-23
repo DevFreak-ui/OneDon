@@ -13,3 +13,8 @@ const medium = {
 const bold={
     fontFamily:'Poppins_700Bold'
 }
+
+
+const fontStyle = { regular,semibold,medium,bold};
+
+export default fontStyle;
