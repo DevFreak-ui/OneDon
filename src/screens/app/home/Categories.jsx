@@ -1,14 +1,41 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
+import fontStyle from '../../../utils/fontStyles'
+
+// add your categories here
+const categories = ['all','books','clothing','gudgets','others']
 
 const Categories = () => {
+    const [activeCategory,setActiveCategory] = useState('all')
   return (
-    <View>
-      <Text>Categories</Text>
-    </View>
+    <ScrollView   showsHorizontalScrollIndicator={false} style={styles.container} contentContainerStyle={styles.content} horizontal>
+      {categories.map(category=><TouchableOpacity activeOpacity={0.7} onPress={()=>setActiveCategory(category)} key={category} style={styles.category}>
+        <Text style={[styles.categoryText,category === activeCategory && {color:"black"}]}>{category}</Text>
+      </TouchableOpacity>)}
+    </ScrollView>
   )
 }
 
 export default Categories
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    category:{
+        marginHorizontal:15
+    },
+    categoryText:{
+        ...fontStyle.medium,
+        fontSize:16,
+        color:"gray",
+        textTransform:'capitalize'
+    },
+    content:{
+        justifyContent:'center',
+        paddingRight:30
+        
+    },
+    container:{
+        maxHeight:40,
+        marginTop:15,
+        paddingHorizontal:20,
+    }
+})
