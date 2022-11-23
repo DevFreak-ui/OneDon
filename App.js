@@ -1,12 +1,12 @@
-import { View, Text, StyleSheet } from "react-native";
-import Login from './src/screens/login';
-import ItemDetails from "./src/screens/item_details";
+import { NavigationContainer } from "@react-navigation/native";
+import Stack from "./src/navigators/Stack";
 
 
 export default function App() {
   return (
-      // <Login></Login>
-      <ItemDetails></ItemDetails>
+    <NavigationContainer>
+      <Stack/>
+      </NavigationContainer>
   );
 }
 
