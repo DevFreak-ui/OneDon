@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import fontStyle from '../../../utils/fontStyles'
 import { SimpleLineIcons } from '@expo/vector-icons'
@@ -6,7 +6,7 @@ import Colors from '../../../utils/colors'
 
 const Card = () => {
   return (
-    <View style={styles.container}>
+    <Pressable style={styles.container}>
         <Image source={require("../../../../assets/images/cardImage.jpg")} resizeMode="cover" style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.title}>Slightly worn pair of German made Sneakers</Text>
@@ -22,7 +22,7 @@ const Card = () => {
             </View>
         </View>
       </View>
-    </View>
+    </Pressable>
   )
 }
 
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     title:{
        ...fontStyle.semibold ,
        fontSize:13,
+       color:Colors.dark
 
     },
     details:{
@@ -63,7 +64,6 @@ const styles = StyleSheet.create({
         minHeight:120,
         width:'100%',
         marginBottom:15,
-        // justifyContent:'center',
         backgroundColor:"whitesmoke",
         paddingHorizontal:5,
         borderRadius:15,
