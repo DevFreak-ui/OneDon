@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import react from 'react';
 import {View, Text, ScrollView, SafeAreaView, StyleSheet} from 'react-native';
-import Colors from '../colors';
-import TypeAInput from '../components/customInput';
-import CustomBtn1 from '../components/customButton';
+import Colors from '../../colors';
+import TypeAInput from '../../components/customInput';
+import CustomBtn1 from '../../components/customButton';
 
 
 const Login = () =>{
