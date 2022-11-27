@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import react from 'react';
 import {View, Text, ScrollView, SafeAreaView, StyleSheet} from 'react-native';
-import Colors from '../../colors';
+import Colors from '../../utils/colors';
 import TypeAInput from '../../components/customInput';
 import CustomBtn1 from '../../components/customButton';
 
 
-const Login = () =>{
+const Login = ({navigation}) =>{
+
+    const onPressAction = () => alert('Disabled feature')
+
     return(
         <SafeAreaView  style={styles.authcontainer}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -27,12 +30,12 @@ const Login = () =>{
                 <View>
                     <TypeAInput label='Email' iconName='email-outline'></TypeAInput>
                     <TypeAInput label='Password' iconName='lock-outline' password></TypeAInput>
-                    <Text style={{color: Colors.primary, alignSelf: 'flex-end', fontSize: 16,marginBottom: 50}}>Forgot Password?</Text>
+                    <Text style={styles.fPass} onPress={() => navigation.navigate('forgotPass')}>Forgot Password?</Text>
                 </View>
 
-                <CustomBtn1 title={'Login'} style={{flex: 1}}></CustomBtn1>
+                <CustomBtn1 title={'Login'} style={{flex: 1}} onPress={() => navigation.navigate('home')}></CustomBtn1>
                 <Text style={{fontSize: 17, textAlign: 'center'}}>Don't have an account? 
-                    <Text style={{color: Colors.primary, marginLeft: 5}}>Sign-Up</Text>
+                    <Text style={{color: Colors.primary, marginLeft: 5}} onPress={onPressAction}>Sign-Up</Text>
                 </Text>
             </ScrollView>
         </SafeAreaView>
@@ -57,6 +60,12 @@ const styles = StyleSheet.create({
         fontSize:  35,
         fontWeight: 'bold',
         maxHeight: 50
+    },
+    fPass: {
+        color: Colors.primary, 
+        alignSelf: 'flex-end', 
+        fontSize: 16,
+        marginBottom: 50
     }
 })
 

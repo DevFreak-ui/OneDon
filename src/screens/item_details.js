@@ -1,12 +1,49 @@
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, ImageBackground } from "react-native";
-import Colors from "../colors";
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, ImageBackground, Linking } from "react-native";
+import Colors from "../utils/colors";
 import Topic from "../components/topic";
 
 const ItemDetails = () => {
 
     const uri = require('../../assets/images/book.jpeg')
 
+    const data = [
+        {
+          title:"Slightly worn pair of German made Sneakers",
+          location:"South Side NMU",
+          quantity:2,
+          id:"123",
+          image:require("../../assets/images/cardImage.jpg")
+        },
+        {
+          title:"Slightly worn pair of German made Sneakers",
+          location:"South Side NMU",
+          quantity:2,
+          id:"123;lsl",
+          image:require("../../assets/images/cardImage.jpg")
+        },
+        {
+          title:"Slightly worn pair of German made Sneakers",
+          location:"South Side NMU",
+          quantity:2,
+          id:"123oao",
+          image:require("../../assets/images/cardImage.jpg")
+        },
+        {
+          title:"Slightly worn pair of German made Sneakers",
+          location:"South Side NMU",
+          quantity:2,
+          id:"123poi",
+          image:require("../../assets/images/cardImage.jpg")
+        },
+        {
+          title:"Slightly worn pair of German made Sneakers",
+          location:"South Side NMU",
+          quantity:2,
+          id:"123wiua",
+          image:require("../../assets/images/cardImage.jpg")
+        },
+      ]
     return(
         <SafeAreaView style={styles.container}>
             <ScrollView>
@@ -16,7 +53,7 @@ const ItemDetails = () => {
                 </View>
 
                 <View style={{marginBottom: 60}}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold', lineHeight: 30, marginBottom: 30, color: Colors.dark}}> 
+                    <Text style={{fontSize: 20, fontWeight: 'bold', lineHeight: 30, marginBottom: 40, color: Colors.dark}}> 
                         Quantum Physics By Wiley Second Edition
                     </Text>
 
@@ -25,7 +62,10 @@ const ItemDetails = () => {
                     </Text>
                     <Text style={styles.details}>Quantity:     3</Text>
                     <Text style={styles.details}>Location:    South Side NMU</Text>
-                    <Text style={styles.details}>Email:         devfreak235@gmail.com</Text>
+                    <Text style={styles.details}>Email:         <Text style={styles.email}
+                        onPress={() => Linking.openURL('mailto:devfreak235@gmail.com?subject=Interested&body=...blah blah')}
+                        >devfreak235@gmail.com</Text>
+                    </Text>
                 </View>
 
                 <View>
@@ -62,8 +102,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     details: {
-        fontSize: 17.5,
+        fontSize: 17,
         fontWeight: '400',
-        marginVertical: 3,
+        marginVertical: 5,
+    },
+    email: {
+        color: Colors.primary,
+        textDecorationLine: 'underline'
     }
 })

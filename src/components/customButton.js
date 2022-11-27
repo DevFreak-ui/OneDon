@@ -1,12 +1,11 @@
 import React from "react";
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
-import Colors from '../colors';
+import Colors from '../utils/colors';
 
 const CustomBtn1 = (props) =>{
-    const onPress = () => {alert('Button')};
 
     return(
-        <TouchableOpacity style={styles.btnContainer} onPress={onPress}>
+        <TouchableOpacity style={styles.btnContainer} onPress={props.onPress}>
             <Text style={styles.btnTxt}>{props.title}</Text>
         </TouchableOpacity>
     )

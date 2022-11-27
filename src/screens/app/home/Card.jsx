@@ -3,10 +3,14 @@ import React from 'react'
 import fontStyle from '../../../utils/fontStyles'
 import { SimpleLineIcons } from '@expo/vector-icons'
 import Colors from '../../../utils/colors'
+import { useNavigation } from '@react-navigation/native'
 
 const Card = ({details}) => {
+
+    const navigation = useNavigation();
+
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={() => {navigation.navigate('itemDetails')}}>
         <Image source={details.image} resizeMode="cover" style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.title}>{details.title}</Text>
@@ -43,13 +47,13 @@ const styles = StyleSheet.create({
     },
     title:{
        ...fontStyle.semibold ,
-       fontSize:13,
+       fontSize:15,
        color:Colors.dark
 
     },
     details:{
         marginLeft:10,
-        maxWidth:'66%',
+        maxWidth:'70%',
         paddingRight:10,
         paddingBottom:15,
         alignSelf:'flex-end'

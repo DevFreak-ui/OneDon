@@ -6,7 +6,7 @@
 */
 import React  from "react";
 import { View, Text, TextInput, StyleSheet, ProgressViewIOSComponent } from "react-native";
-import Colors from "../colors";
+import Colors from "../utils/colors";
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
 
@@ -45,7 +45,7 @@ const TypeBInput = () =>{
 
 const styles = StyleSheet.create({
     inputContainer: {
-        backgroundColor: '#F1F1F1', 
+        backgroundColor: Colors.inputA, 
         height: 50, 
         borderRadius: 10,
         flexDirection: 'row',
