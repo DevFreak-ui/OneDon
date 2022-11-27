@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from './Header'
 import Categories from './Categories'
 import Card from './Card'
-import Footer from './Footer'
 
 const HomeScreen = () => {
 
@@ -55,7 +54,6 @@ const HomeScreen = () => {
         keyExtractor={item=>item.id}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
-        ListFooterComponent={()=><Footer />}
         />
     </View>
   )

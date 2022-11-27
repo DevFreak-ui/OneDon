@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     container:{
         maxHeight:40,
-        marginTop:15,
+        marginTop:20,
         paddingHorizontal:20,
     }
 })
