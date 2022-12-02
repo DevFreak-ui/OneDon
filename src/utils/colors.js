@@ -3,7 +3,7 @@ const Colors = {
     dark: '#424242',
     light: '#969698',
     typeAColor: '#E8E2FE',
-    inputA: '#F1F1F1'
+    inputA: '#edf2ef'
 }
 
 export default Colors;
