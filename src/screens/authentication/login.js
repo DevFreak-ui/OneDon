@@ -34,8 +34,7 @@ const Login = ({navigation}) =>{
                 </View>
 
                 <CustomBtn1 title={'Login'} style={{flex: 1}} onPress={() => navigation.navigate('home')}></CustomBtn1>
-                <Text style={{fontSize: 17, textAlign: 'center'}}>Don't have an account? 
-                    <Text style={{color: Colors.primary, marginLeft: 5}} onPress={onPressAction}>Sign-Up</Text>
+                <Text style={{fontSize: 17, textAlign: 'center'}}>First time only password: 123456 
                 </Text>
             </ScrollView>
         </SafeAreaView>

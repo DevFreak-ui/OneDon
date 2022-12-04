@@ -61,8 +61,9 @@ const ItemDetails = () => {
                         <Text style={{color: Colors.primary}}>                Mireku Prince</Text>
                     </Text>
                     <Text style={styles.details}>Quantity:     3</Text>
-                    <Text style={styles.details}>Location:    South Side NMU</Text>
-                    <Text style={styles.details}>Email:         <Text style={styles.email}
+                    <Text style={styles.details}>Location:    <Text style={styles.link}
+                        onPress={() => alert('map under development')}>South Side NMU</Text></Text>
+                    <Text style={styles.details}>Email:         <Text style={styles.link}
                         onPress={() => Linking.openURL('mailto:devfreak235@gmail.com?subject=Interested&body=...blah blah')}
                         >devfreak235@gmail.com</Text>
                     </Text>
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
         fontWeight: '400',
         marginVertical: 5,
     },
-    email: {
+    link: {
         color: Colors.primary,
         textDecorationLine: 'underline'
     }

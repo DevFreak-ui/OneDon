@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     },
     bottom:{
         position:'absolute',
-        bottom:20,
+        bottom:25,
         paddingHorizontal:20
     },
     menu:{
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         backgroundColor:Colors.typeAColor,
         alignItems:'center',
         justifyContent:'center',
-        borderRadius:8
+        borderRadius:6
     },
     wrapper:{
         backgroundColor:"rgba(0,0,0,0.3)",
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius:40,
         borderBottomRightRadius:40,
         paddingHorizontal:20,
-        paddingTop:Platform.OS === 'ios'? 50: 40
+        paddingTop:Platform.OS === 'ios'? 50: 60
     },
     image:{
         borderBottomLeftRadius:40,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     },
     container:{
         width:'100%',
-        height:200,
+        height:240,
      
     }
 })
