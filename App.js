@@ -1,13 +1,13 @@
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import Stack from "./src/navigators/Stack";
+import 'react-native-gesture-handler'
+import { NavigationContainer } from "@react-navigation/native"
+import DrawerNav from "./src/navigators/Drawer"
 
 
 export default function App() {
-
   return (
     <NavigationContainer>
-      <Stack/>
-      </NavigationContainer>
+      <DrawerNav/>
+    </NavigationContainer>
   );
 }
 

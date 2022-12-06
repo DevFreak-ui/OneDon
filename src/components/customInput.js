@@ -1,7 +1,7 @@
 /*
     There are types of input fields for this projet (say TypeA & TypeB)
     TypeA ------->>>>> Login and signup screen Inputs
-    TypeB ------->>>>> All other screens Input [@Lipton_Zuma]
+    TypeB ------->>>>> All other screens Input [@Michael]
 
 */
 import React  from "react";

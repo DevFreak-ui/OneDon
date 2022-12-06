@@ -3,14 +3,18 @@ import React from 'react'
 import { Feather } from '@expo/vector-icons'
 import Colors from '../../../utils/colors'
 import fontStyle from '../../../utils/fontStyles'
+import { useNavigation } from '@react-navigation/native'
 
 const Header = () => {
+
+  const navigation = useNavigation();
+
   return (
     <ImageBackground imageStyle={styles.image} resizeMode='cover' source={require('../../../../assets/images/headerBg.jpg')} style={styles.container}>
     <View style={styles.wrapper}>
-      <TouchableOpacity style={styles.menu}>
+      <TouchableOpacity style={styles.menu} onPress={() => navigation.openDrawer()}>
         {/* Replace this with that icon, I could  not find the one in the design on the vector icons directory */}
-        <Feather name="menu" size={20} color={Colors.dark} />
+        <Feather name="menu" size={22} color={'white'}/>
       </TouchableOpacity>
 
     <View style={styles.bottom}>
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
     menu:{
         width:30,
         height:30,
-        backgroundColor:Colors.typeAColor,
+        backgroundColor:'rgba(151,122,248,.6)',
         alignItems:'center',
         justifyContent:'center',
         borderRadius:6
