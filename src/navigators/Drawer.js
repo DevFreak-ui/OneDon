@@ -4,11 +4,10 @@ import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold, P
 import { DrawerContent } from '../screens/DrawerContent'
 // Screens
 import HomeScreen from '../screens/app/home/HomeScreen'
-import Login from '../screens/authentication/login'
-import ForgotPassword from '../screens/authentication/forgotPassword'
 import ItemDetails from '../screens/item_details'
 import { Feather } from '@expo/vector-icons'
 import Colors from '../utils/colors'
+import AddItem from '../screens/AddItem'
 const Drawer = createDrawerNavigator();
 
 function DrawerNav() {
@@ -50,7 +49,7 @@ function DrawerNav() {
           )
         }}
       />
-      <Drawer.Screen name="Product Donation" component={ItemDetails} 
+      <Drawer.Screen name="Product Donation" component={AddItem} 
         options={{
           drawerIcon: () => (
             <Feather name='gift' size={15}/>
