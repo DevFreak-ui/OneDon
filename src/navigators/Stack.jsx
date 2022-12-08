@@ -4,10 +4,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins'
 
 // Screens
-import HomeScreen from '../screens/app/home/HomeScreen'
 import Login from '../screens/authentication/login'
 import ForgotPassword from '../screens/authentication/forgotPassword'
 import ItemDetails from '../screens/item_details'
+import DrawerNav from './Drawer'
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -28,7 +28,7 @@ const Stack = () => {
     initialRouteName='login'
     >
         <StackNavigator.Screen name="login" component={Login} />
-        <StackNavigator.Screen name="home" component={HomeScreen} />
+        <StackNavigator.Screen name="home" component={DrawerNav} />
         <StackNavigator.Screen name="forgotPass" component={ForgotPassword}/>
         <StackNavigator.Screen name="itemDetails" component={ItemDetails} />
     </StackNavigator.Navigator>

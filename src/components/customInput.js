@@ -16,7 +16,7 @@ const TypeAInput = ({label, iconName, password}) => {
 
     return(
         <View style={{marginBottom: 20}}>
-            <Text style={{fontSize: 18, fontWeight: 'bold', color: Colors.light, marginVertical: 10}}>
+            <Text style={styles.label}>
                 {label}
             </Text>
             <View style={styles.inputContainer}>
@@ -32,12 +32,19 @@ const TypeAInput = ({label, iconName, password}) => {
 } 
 
 
-const TypeBInput = () =>{
+export function TypeBInput(props) {
     return(
-        <View>
-            <Text>
-                TypeB Input
+        <View style={{marginBottom: 20}}>
+            <Text style={styles.label}>
+                {props.label}
             </Text>
+            <View style={[styles.inputContainer2, {height: props.height}]}>
+                <Icon name={props.iconName} size={15}/>
+                <TextInput 
+                    style={styles.inputContent}
+                    {...props}
+                    ></TextInput>
+            </View>
         </View>
     )
 }
@@ -56,6 +63,21 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         flex: 1,
+        paddingHorizontal: 15
+    },
+    label: {
+        fontSize: 18, 
+        fontWeight: 'bold', 
+        color: Colors.light, 
+        marginVertical: 10
+    },
+    inputContainer2: {
+        borderColor: Colors.primary, 
+        borderStyle: 'solid',
+        borderWidth: 2,
+        borderRadius: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
         paddingHorizontal: 15
     }
 })
