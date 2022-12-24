@@ -10,8 +10,8 @@ const Card = ({details}) => {
     const navigation = useNavigation();
 
   return (
-    <Pressable style={styles.container} onPress={() => {navigation.navigate('itemDetails')}}>
-        <Image source={details.image} resizeMode="cover" style={styles.image} />
+    <Pressable style={styles.container} onPress={() => {navigation.navigate('itemDetails', {pid: details.id})}}>
+        <Image source={{uri: details.image}} resizeMode="cover" style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.title}>{details.title}</Text>
         <View style={styles.row}>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     },
     image:{
         width:100,
-        height:'90%',
+        height:'80%',
         borderRadius:10
     },
     container:{

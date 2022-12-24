@@ -1,92 +1,112 @@
-import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, ImageBackground, Linking } from "react-native";
+import React,  { Component } from "react";
+import { View,
+    Text,
+    StyleSheet, 
+    SafeAreaView, 
+    ScrollView, 
+    ImageBackground,
+    Linking } from "react-native";
 import Colors from "../utils/colors";
 import Topic from "../components/topic";
+import Card from "./app/home/Card";
+import { roundToNearestPixel } from "react-native/Libraries/Utilities/PixelRatio";
 
-const ItemDetails = () => {
 
-    const uri = require('../../assets/images/book.jpeg')
+export default class ItemDetails extends Component {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            isLoading: true,
+            details: []
+        }
+    }
 
-    const data = [
-        {
-          title:"Slightly worn pair of German made Sneakers",
-          location:"South Side NMU",
-          quantity:2,
-          id:"123",
-          image:require("../../assets/images/cardImage.jpg")
-        },
-        {
-          title:"Slightly worn pair of German made Sneakers",
-          location:"South Side NMU",
-          quantity:2,
-          id:"123;lsl",
-          image:require("../../assets/images/cardImage.jpg")
-        },
-        {
-          title:"Slightly worn pair of German made Sneakers",
-          location:"South Side NMU",
-          quantity:2,
-          id:"123oao",
-          image:require("../../assets/images/cardImage.jpg")
-        },
-        {
-          title:"Slightly worn pair of German made Sneakers",
-          location:"South Side NMU",
-          quantity:2,
-          id:"123poi",
-          image:require("../../assets/images/cardImage.jpg")
-        },
-        {
-          title:"Slightly worn pair of German made Sneakers",
-          location:"South Side NMU",
-          quantity:2,
-          id:"123wiua",
-          image:require("../../assets/images/cardImage.jpg")
-        },
-      ]
-    return(
-        <SafeAreaView style={styles.container}>
-            <ScrollView>
-                <Topic title={'Item Details'}></Topic>
-                <View style={styles.content}>
-                    <ImageBackground source={uri} style={styles.image}></ImageBackground>
-                </View>
 
-                <View style={{marginBottom: 60}}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold', lineHeight: 30, marginBottom: 40, color: Colors.dark}}> 
-                        Quantum Physics By Wiley Second Edition
-                    </Text>
+    componentDidMount () {
 
-                    <Text style={styles.details}>By:   
-                        <Text style={{color: Colors.primary}}>                Mireku Prince</Text>
-                    </Text>
-                    <Text style={styles.details}>Quantity:     3</Text>
-                    <Text style={styles.details}>Location:    <Text style={styles.link}
-                        onPress={() => alert('map under development')}>South Side NMU</Text></Text>
-                    <Text style={styles.details}>Email:         <Text style={styles.link}
-                        onPress={() => Linking.openURL('mailto:devfreak235@gmail.com?subject=Interested&body=...blah blah')}
-                        >devfreak235@gmail.com</Text>
-                    </Text>
-                </View>
+        var fetchUrl = "http://onedon.atwebpages.com/api/itemDetails.php"
+        var data = {
+            pid: this.props.route.params.pid
+        }
 
-                <View>
-                    <Text  style={{fontWeight: 'bold', fontSize: 19, color: Colors.dark, marginVertical: 10}}> 
-                        Similar Posts
-                    </Text>
+        fetch(
+            fetchUrl,
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'aplication/json',
+                    'Content-Type': 'application.json'
+                },
+                body: JSON.stringify(data)
+            }
+        )
+        .then((response) => response.json())
+        .then((responseJson) => {
+    
+          if (responseJson[0].message != 'success') {
+              alert('Invalid Id');
+              this.props.navigation.goBack();
+          }else{
+            this.setState({
+              isLoading: false,
+              details: responseJson[0].content
+            })
+          }
+          
+        })
+        .catch((error)=>{
+            alert('Error: '+ error);
+            this.props.navigation.goBack();
+        })
+    }
 
-                    {/*
-                    
-                        ... card component goes here
-                    
-                    */}
+    render()
+    {
+        let { details } = this.state
+        return(
+            <SafeAreaView style={styles.container}>
+                <ScrollView>
+                    <Topic title={'Item Details'}></Topic>
+                    <View style={styles.content}>
+                        <ImageBackground source={{uri: details.image}} style={styles.image}></ImageBackground>
+                    </View>
 
-                </View>
-            </ScrollView>
-        </SafeAreaView>
-    )
+                    <View style={{marginBottom: 60}}>
+                        <Text style={{fontSize: 20, fontWeight: 'bold', lineHeight: 30, marginBottom: 40, color: Colors.dark}}> 
+                            {details.title}
+                        </Text>
+
+                        <Text style={styles.details}>By:   
+                            <Text style={{color: Colors.primary}}>                {details.name}</Text>
+                        </Text>
+                        <Text style={styles.details}>Quantity:     {details.quantity}</Text>
+                        <Text style={styles.details}>Location:    <Text style={styles.link}
+                            onPress={() => alert('map under development')}>{details.location}</Text></Text>
+                        <Text style={styles.details}>Email:         <Text style={styles.link}
+                            onPress={() => Linking.openURL('mailto:devfreak235@gmail.com?subject=Interested&body=...blah blah')}
+                            >{details.email}</Text>
+                        </Text>
+                    </View>
+
+                    <View>
+                        <Text  style={{fontWeight: 'bold', fontSize: 19, color: Colors.dark, marginVertical: 10}}> 
+                            Similar Posts
+                        </Text>
+
+                        {/*
+                        
+                            ... card component goes here
+                        
+                        */}
+
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+        )
+    }
 }
 
-export default ItemDetails;
 
 const styles = StyleSheet.create({
     container: {

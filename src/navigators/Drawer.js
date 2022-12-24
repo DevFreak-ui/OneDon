@@ -8,6 +8,7 @@ import ItemDetails from '../screens/item_details'
 import { Feather } from '@expo/vector-icons'
 import Colors from '../utils/colors'
 import AddItem from '../screens/AddItem'
+import AccountSheet from '../screens/AccountSheet'
 const Drawer = createDrawerNavigator();
 
 function DrawerNav() {
@@ -32,13 +33,6 @@ function DrawerNav() {
         options={{
           drawerIcon: () => (
             <Feather name='home' size={15}/>
-          )
-        }}
-      />
-      <Drawer.Screen name="Account Information" component={ItemDetails} 
-        options={{
-          drawerIcon: () => (
-            <Feather name='user' size={15}/>
           )
         }}
       />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Platform, Image } from 'react-native'
+import { View, Text, StyleSheet, Platform, Image, Pressable } from 'react-native'
 import {
     DrawerContentScrollView,
     DrawerItem,
@@ -7,14 +7,15 @@ import {
 } from '@react-navigation/drawer'
 import { Feather } from '@expo/vector-icons'
 import Colors from '../utils/colors'
-
+import AccountInfo from './AccountSheet'
+import { useNavigation } from '@react-navigation/native'
 
 const UserView = () => {
 
     const userImage = require('../../assets/images/profile.jpeg')
 
     return(
-        <View style={styles.userContainer}>
+        <Pressable style={styles.userContainer} onPress={()=>alert('Alive')}>
             <View style={styles.imageContainer}>
                 <Image style={styles.img} source={userImage} />
             </View>
@@ -23,7 +24,7 @@ const UserView = () => {
                 <Text style={styles.lvlTxt}> Level One Donor </Text>
                 <View style={styles.lvlStat}></View>
             </View>
-        </View>
+        </Pressable>
     )
 }
 

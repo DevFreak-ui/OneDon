@@ -10,21 +10,22 @@ import Colors from "../utils/colors";
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
 
-const TypeAInput = ({label, iconName, password}) => {
+const TypeAInput = (props) => {
 
-    const [hidePassword, setHidePassword] = React.useState(password);
+    const [hidePassword, setHidePassword] = React.useState(props.password);
 
     return(
         <View style={{marginBottom: 20}}>
             <Text style={styles.label}>
-                {label}
+                {props.label}
             </Text>
             <View style={styles.inputContainer}>
-                <Icon name={iconName} size={15}/>
+                <Icon name={props.iconName} size={15}/>
                 <TextInput 
                     secureTextEntry={hidePassword}
                     style={styles.inputContent}
                     autoCorrect={false}
+                    {...props}
                     ></TextInput>
             </View>
         </View>
