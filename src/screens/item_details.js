@@ -9,7 +9,6 @@ import { View,
 import Colors from "../utils/colors";
 import Topic from "../components/topic";
 import Card from "./app/home/Card";
-import { roundToNearestPixel } from "react-native/Libraries/Utilities/PixelRatio";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 

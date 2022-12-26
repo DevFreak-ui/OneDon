@@ -14,7 +14,6 @@ import { Feather } from '@expo/vector-icons'
 import Topic from '../components/topic'
 import * as ImagePicker from 'expo-image-picker';
 import Category from '../components/categorySelector'
-import { createNavigatorFactory } from '@react-navigation/native'
 
 
 export default class AddItem extends Component {
@@ -46,8 +45,10 @@ export default class AddItem extends Component {
         }
     };
 
+    
+
     // INSERT FUNCTION
-    InsertFunc = () => {
+    InsertFunc = ({navigation}) => {
 
         var title = this.state.title
         var category = this.state.category
@@ -58,7 +59,7 @@ export default class AddItem extends Component {
 
         var InsertUrl = "http://onedon.atwebpages.com/api/addItem.php"
         var headers = {
-            'Accept': 'aplication/json',
+            'Accept': 'application/json',
             'Content-Type': 'application.json'
         }
         var data = {
@@ -69,7 +70,6 @@ export default class AddItem extends Component {
             imgUrl: imgUrl,
             user_id: user_id
         }
-        console.log(data);
         fetch (
             InsertUrl,
             {
@@ -84,7 +84,8 @@ export default class AddItem extends Component {
                 alert(response[0].message);
             }else {
                 alert('Saved!');
-                this.props.navigation.navigate('home');
+                this.setState({title: '', location: '', quantity: '', image: null})
+                this.props.navigation.navigate('Home');
             }
         })
         .catch((error) => {
