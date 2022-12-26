@@ -13,7 +13,6 @@ const Header = () => {
     <ImageBackground imageStyle={styles.image} resizeMode='cover' source={require('../../../../assets/images/headerBg.jpg')} style={styles.container}>
     <View style={styles.wrapper}>
       <TouchableOpacity style={styles.menu} onPress={() => navigation.openDrawer()}>
-        {/* Replace this with that icon, I could  not find the one in the design on the vector icons directory */}
         <Feather name="menu" size={22} color={'white'}/>
       </TouchableOpacity>
 

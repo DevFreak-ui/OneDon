@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import { SafeAreaView, 
     View, 
     Text, 
@@ -14,13 +14,23 @@ import { Feather } from '@expo/vector-icons'
 import Topic from '../components/topic'
 import * as ImagePicker from 'expo-image-picker';
 import Category from '../components/categorySelector'
+import { createNavigatorFactory } from '@react-navigation/native'
 
 
-const AddItem = () => {
+export default class AddItem extends Component {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            image: null,
+            title: '',
+            category: 'general',
+            location: '',
+            quantity: 1
+        }
+    }
 
-    const [image, setImage] = useState(null);
-
-    const pickImage = async () => {
+    pickImage = async () => {
         // No permissions request is necessary for launching the image library
         let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -32,42 +42,102 @@ const AddItem = () => {
         console.log(result);
 
         if (!result.canceled) {
-        setImage(result.assets[0].uri);
+            this.setState({ image: result});
         }
     };
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <Topic title={'Add Item'} />
+    // INSERT FUNCTION
+    InsertFunc = () => {
 
-                <Pressable style={styles.imgContainer} onPress={pickImage}>
-                    <Feather name='plus' size={16} />
-                    <Text>Choose Image</Text>
-                </Pressable>
-                {image && <Image source={{ uri: image }} style={styles.selected} />}
+        var title = this.state.title
+        var category = this.state.category
+        var location = this.state.location
+        var quantity = this.state.quantity
+        var imgUrl = this.state.image.uri
+        var user_id = 2
 
-                <TypeBInput 
-                    label='Item Description' 
-                    multiline
-                    numberOfLines={6}
-                />
-                
-                {/* Category Selector starts */}
-                <Category />
-                
+        var InsertUrl = "http://onedon.atwebpages.com/api/addItem.php"
+        var headers = {
+            'Accept': 'aplication/json',
+            'Content-Type': 'application.json'
+        }
+        var data = {
+            title: title,
+            category: category,
+            location: location,
+            quantity: quantity,
+            imgUrl: imgUrl,
+            user_id: user_id
+        }
+        console.log(data);
+        fetch (
+            InsertUrl,
+            {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(data)
+            }
+        )
+        .then((response) => response.json())
+        .then((response) => {
+            if (response[0].message != 'success') {
+                alert(response[0].message);
+            }else {
+                alert('Saved!');
+                this.props.navigation.navigate('home');
+            }
+        })
+        .catch((error) => {
+            alert('Error: ' + error);
+        })
 
-                {/* Category Selector ends */}
-                <TypeBInput label='Location' iconName='' height={50}/>
-                <TypeBInput label='Quantity' iconName='' height={50} keyboardType={'numeric'}/>
+    }
 
-                <CustomBtn1 title='Donate' onPress={() => alert('Confirm')} />
-            </ScrollView>
-        </SafeAreaView>
-    )
+    render()
+    {
+        let { image } = this.state
+        return(
+            <SafeAreaView style={styles.container}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <Topic title={'Add Item'} />
+
+                    <Pressable style={styles.imgContainer} onPress={this.pickImage}>
+                        <Feather name='plus' size={16} />
+                        <Text>Choose Image</Text>
+                    </Pressable>
+                    {image && <Image source={{ uri: image.uri }} style={styles.selected} />}
+
+                    <TypeBInput 
+                        label='Item Description' 
+                        height={50}
+                        onChangeText={(title)=>this.setState({title})}
+                    />
+                    
+                    {/* Category Selector starts */}
+                    <Category 
+
+                    />
+                    
+
+                    {/* Category Selector ends */}
+                    <TypeBInput 
+                        label='Location'
+                        height={50}
+                        onChangeText={(location)=>this.setState({location})}
+                    />
+                    <TypeBInput 
+                        label='Quantity' 
+                        height={50} 
+                        keyboardType={'numeric'}
+                        onChangeText={(quantity)=>this.setState({quantity})}
+                    />
+
+                    <CustomBtn1 title='Donate' onPress={this.InsertFunc} />
+                </ScrollView>
+            </SafeAreaView>
+        )
+    }
 }
-
-export default AddItem
 
 const styles = StyleSheet.create({
     container: {

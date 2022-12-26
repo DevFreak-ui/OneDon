@@ -4,64 +4,7 @@ import {View, Text, ScrollView, SafeAreaView, StyleSheet} from 'react-native';
 import Colors from '../../utils/colors';
 import TypeAInput from '../../components/customInput';
 import CustomBtn1 from '../../components/customButton';
-
-
-// const Login = ({navigation}) =>{
-
-//     const onPressAction = () => alert('Disabled feature');
-
-//     const [emailValue, setEmailValue] = useState('');
-//     const [passwordValue, setPasswordValue] = useState('');
-
-//     const login = () => {
-//         var {email} = this.state.emailValue;
-//         console.log(email);
-//     }
-
-//     return(
-//         <SafeAreaView  style={styles.authcontainer}>
-//             <ScrollView showsVerticalScrollIndicator={false}>
-//                 <StatusBar style="auto" />
-//                 <Text style={styles.smheader}> Welcome to </Text>
-//                 <View style={{ marginBottom: 90, flexDirection: 'row', alignSelf: 'center'}}>
-//                     <Text style={styles.bgheader}>One</Text>
-//                     <View style={{backgroundColor: Colors.primary,
-//                                     paddingHorizontal: 15,
-//                                     paddingVertical: 3,
-//                                     marginHorizontal: 6,
-//                                     borderRadius: 10,
-//                                     alignItems: 'center'}}>
-//                                     <Text style={[styles.bgheader, {color: '#f2f2f2'}]}>Donation</Text>
-//                     </View>
-//                 </View>
-                
-//                 <View>
-//                     <TypeAInput 
-//                         label='Email or Stud. NetID' 
-//                         iconName='email-outline'
-//                         value={emailValue}
-//                         onChangeText={setEmailValue}
-//                         placeholder='10...  or  ...@unm.edu'
-//                         >
-//                     </TypeAInput>
-//                     <TypeAInput 
-//                         label='Password' 
-//                         iconName='lock-outline' 
-//                         password
-//                         value={passwordValue}
-//                         onChangeText={setPasswordValue}
-//                         >  
-//                     </TypeAInput>
-//                     <Text style={styles.fPass} onPress={() => navigation.navigate('forgotPass')}>Forgot Password?</Text>
-//                 </View>
-
-//                 <CustomBtn1 title={'Login'} style={{flex: 1}} onPress={() => login()}></CustomBtn1>
-//                 <Text style={{fontSize: 17, textAlign: 'center'}}>First time only password: 123456 
-//                 </Text>
-//             </ScrollView>
-//         </SafeAreaView>
-//     );
-// }
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default class Login extends Component{
@@ -70,6 +13,10 @@ export default class Login extends Component{
     {
         super(props);
         this.state={Email:'', Password:''}
+    }
+
+    storeID = (user_id) => {
+        AsyncStorage.setItem('user_id', user_id);
     }
 
     login = () => {
@@ -113,6 +60,8 @@ export default class Login extends Component{
                 // If authenticted
                 if (response[0].Message == 'Success') {
                     alert('Login Successful');
+                    const user_id = response[0].user_id;
+                    this.storeID(user_id);
                     this.props.navigation.navigate('home');
                 }else{
                     alert(response[0].Message);

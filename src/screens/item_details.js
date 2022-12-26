@@ -10,6 +10,7 @@ import Colors from "../utils/colors";
 import Topic from "../components/topic";
 import Card from "./app/home/Card";
 import { roundToNearestPixel } from "react-native/Libraries/Utilities/PixelRatio";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default class ItemDetails extends Component {
@@ -18,12 +19,13 @@ export default class ItemDetails extends Component {
         super(props);
         this.state = {
             isLoading: true,
-            details: []
+            details: [],
+            user_id: ''
         }
     }
 
 
-    componentDidMount () {
+    componentDidMount = () => {
 
         var fetchUrl = "http://onedon.atwebpages.com/api/itemDetails.php"
         var data = {
@@ -59,6 +61,9 @@ export default class ItemDetails extends Component {
             alert('Error: '+ error);
             this.props.navigation.goBack();
         })
+
+        AsyncStorage.getItem('user_id').then((value) => this.setState({user_id: value}))
+
     }
 
     render()
@@ -84,7 +89,10 @@ export default class ItemDetails extends Component {
                         <Text style={styles.details}>Location:    <Text style={styles.link}
                             onPress={() => alert('map under development')}>{details.location}</Text></Text>
                         <Text style={styles.details}>Email:         <Text style={styles.link}
-                            onPress={() => Linking.openURL('mailto:devfreak235@gmail.com?subject=Interested&body=...blah blah')}
+                            onPress={() => {
+                                var mail = details.email
+                                Linking.openURL('mailto:' + mail +'?subject=Interested&body=...blah blah')}
+                            }
                             >{details.email}</Text>
                         </Text>
                     </View>
@@ -93,7 +101,7 @@ export default class ItemDetails extends Component {
                         <Text  style={{fontWeight: 'bold', fontSize: 19, color: Colors.dark, marginVertical: 10}}> 
                             Similar Posts
                         </Text>
-
+                            
                         {/*
                         
                             ... card component goes here
