@@ -1,7 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import fontStyle from '../../../utils/fontStyles'
-import { SimpleLineIcons } from '@expo/vector-icons'
 import Colors from '../../../utils/colors'
 import { useNavigation } from '@react-navigation/native'
 
@@ -11,7 +10,7 @@ const Card = ({details}) => {
     // const [progress, setProgress] = useState(0);
     var prog = ((details.pamount)/(details.tamount))*100
   return (
-    <Pressable style={styles.container} onPress={() => {navigation.navigate('itemDetails')}}>
+    <Pressable style={styles.container} onPress={() => {navigation.navigate('cashActivity', {aid: details.id})}}>
         <Image source={{uri: details.image}} resizeMode="cover" style={styles.image} />
       <View style={styles.details}>
         <Text style={styles.title}>{details.title}</Text>
@@ -25,12 +24,12 @@ const Card = ({details}) => {
             </View>
         </View>
         <View style={styles.row}>
-        <View style={styles.progressBG}>
-            <View style={[styles.progress,
-                    {
-                    width: `${prog}%`
-                    },
-                ]}
+            <View style={styles.progressBG}>
+                <View style={[styles.progress,
+                        {
+                        width: `${prog}%`
+                        },
+                    ]}
                 />
             </View>
         </View>
@@ -102,5 +101,5 @@ const styles = StyleSheet.create({
         height: 10,
         backgroundColor: Colors.primary,
         borderRadius: 10,
-      },
+      }
 })

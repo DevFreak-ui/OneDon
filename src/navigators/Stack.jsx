@@ -8,6 +8,7 @@ import Login from '../screens/authentication/login'
 import ForgotPassword from '../screens/authentication/forgotPassword'
 import ItemDetails from '../screens/item_details'
 import DrawerNav from './Drawer'
+import CashActivityDetails from '../screens/app/cashDonation/CashActivityDetails'
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -31,6 +32,7 @@ const Stack = () => {
         <StackNavigator.Screen name="home" component={DrawerNav} />
         <StackNavigator.Screen name="forgotPass" component={ForgotPassword}/>
         <StackNavigator.Screen name="itemDetails" component={ItemDetails} />
+        <StackNavigator.Screen name="cashActivity" component={CashActivityDetails} />
     </StackNavigator.Navigator>
   )
 }
