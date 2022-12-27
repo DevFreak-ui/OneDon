@@ -8,8 +8,8 @@ import ItemDetails from '../screens/item_details'
 import { Feather } from '@expo/vector-icons'
 import Colors from '../utils/colors'
 import AddItem from '../screens/AddItem'
-import AccountSheet from '../screens/AccountSheet'
 import ChangePass from '../screens/authentication/changePassword'
+import CashScreen from '../screens/app/cashDonation/CashScreen'
 const Drawer = createDrawerNavigator();
 
 function DrawerNav() {
@@ -51,7 +51,7 @@ function DrawerNav() {
           )
         }}
       />
-      <Drawer.Screen name="Cash Donation" component={ItemDetails} 
+      <Drawer.Screen name="CashDonation" component={CashScreen} 
         options={{
           drawerIcon: () => (
             <Feather name='dollar-sign' size={15}/>
