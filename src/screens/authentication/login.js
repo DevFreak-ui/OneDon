@@ -108,7 +108,7 @@ export default class Login extends Component{
                             onChangeText={Password=>this.setState({Password})}
                             >  
                         </TypeAInput>
-                        <Text style={styles.fPass} onPress={() => navigation.navigate('forgotPass')}>Forgot Password?</Text>
+                        <Text style={styles.fPass} onPress={() => this.props.navigation.navigate('forgotPass')}>Forgot Password?</Text>
                     </View>
     
                     <CustomBtn1 title={'Login'} style={{flex: 1}} onPress={this.login}></CustomBtn1>

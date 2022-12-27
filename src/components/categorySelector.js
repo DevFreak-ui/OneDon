@@ -21,7 +21,7 @@ const Category = () => {
                     }>
                     <Picker.Item label="general" value="General" />
                     <Picker.Item label="books" value="Books" />
-                    <Picker.Item label="clothing" value="Books" />
+                    <Picker.Item label="clothing" value="Clothing" />
                     <Picker.Item label="gadgets" value="Gadgets" />
                 </Picker>
             </View>

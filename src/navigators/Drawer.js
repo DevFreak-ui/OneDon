@@ -9,6 +9,7 @@ import { Feather } from '@expo/vector-icons'
 import Colors from '../utils/colors'
 import AddItem from '../screens/AddItem'
 import AccountSheet from '../screens/AccountSheet'
+import ChangePass from '../screens/authentication/changePassword'
 const Drawer = createDrawerNavigator();
 
 function DrawerNav() {
@@ -36,7 +37,7 @@ function DrawerNav() {
           )
         }}
       />
-      <Drawer.Screen name="Change Password" component={ItemDetails} 
+      <Drawer.Screen name="ChangePassword" component={ChangePass} 
         options={{
           drawerIcon: () => (
             <Feather name='shield' size={15}/>
