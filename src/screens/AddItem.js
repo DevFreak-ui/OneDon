@@ -1,10 +1,8 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { Component } from 'react'
 import { SafeAreaView, 
-    View, 
     Text, 
     ScrollView, 
-    StyleSheet, 
-    Button, 
+    StyleSheet,
     Image,
     Pressable 
 } from 'react-native'
@@ -13,7 +11,7 @@ import { TypeBInput } from '../components/customInput'
 import { Feather } from '@expo/vector-icons'
 import Topic from '../components/topic'
 import * as ImagePicker from 'expo-image-picker';
-import Category from '../components/categorySelector'
+import { CategoryA } from '../components/categorySelector'
 
 
 export default class AddItem extends Component {
@@ -115,7 +113,7 @@ export default class AddItem extends Component {
                     />
                     
                     {/* Category Selector starts */}
-                    <Category 
+                    <CategoryA 
 
                     />
                     

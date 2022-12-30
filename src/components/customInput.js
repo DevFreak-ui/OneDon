@@ -5,7 +5,7 @@
 
 */
 import React  from "react";
-import { View, Text, TextInput, StyleSheet, ProgressViewIOSComponent } from "react-native";
+import { View, Text, TextInput, StyleSheet } from "react-native";
 import Colors from "../utils/colors";
 import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 
@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15
     },
     label: {
-        fontSize: 18, 
-        fontWeight: 'bold', 
+        fontSize: 16, 
+        fontWeight: '500', 
         color: Colors.light, 
         marginVertical: 10
     },
