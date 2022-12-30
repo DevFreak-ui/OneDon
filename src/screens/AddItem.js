@@ -152,13 +152,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20
-    },
-    selected: {
-        width: 150,
-        height: 150,
-        borderRadius: 10,
-        borderColor: '#ffffff',
-        borderStyle: 'solid',
-        borderWidth: 8
     }
 })

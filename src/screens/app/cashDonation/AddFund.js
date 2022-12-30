@@ -62,7 +62,7 @@ export default class AddFund extends Component {
                         label='Amount' 
                         height={50} 
                         keyboardType={'numeric'}
-                        onChangeText={(quantamountity)=>this.setState({amount})}
+                        onChangeText={(amount)=>this.setState({amount})}
                     />
 
                     <CustomBtn1 title='Post' onPress={() => alert("something")} />
@@ -86,13 +86,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20
-    },
-    selected: {
-        width: 150,
-        height: 150,
-        borderRadius: 10,
-        borderColor: '#ffffff',
-        borderStyle: 'solid',
-        borderWidth: 8
     }
 })

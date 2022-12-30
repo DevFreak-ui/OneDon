@@ -11,6 +11,7 @@ import AddItem from '../screens/AddItem'
 import ChangePass from '../screens/authentication/changePassword'
 import CashScreen from '../screens/app/cashDonation/CashScreen'
 import AddFund from '../screens/app/cashDonation/AddFund'
+import PaymentGateway from '../screens/app/cashDonation/PaymentGateway'
 const Drawer = createDrawerNavigator();
 
 function DrawerNav() {
@@ -81,6 +82,13 @@ function DrawerNav() {
         }}
       />
       <Drawer.Screen name="AddFund" component={AddFund} 
+        options={{
+          drawerIcon: () => (
+            <Feather name='log-out' size={15}/>
+          )
+        }}
+      />
+      <Drawer.Screen name="paymentType" component={PaymentGateway} 
         options={{
           drawerIcon: () => (
             <Feather name='log-out' size={15}/>

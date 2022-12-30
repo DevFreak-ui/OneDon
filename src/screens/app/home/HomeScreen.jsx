@@ -1,6 +1,5 @@
 import { FlatList, StyleSheet, View } from 'react-native'
 import React, { Component } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from './Header'
 import Categories from './Categories'
 import Card from './Card'
