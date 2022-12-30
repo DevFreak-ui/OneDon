@@ -108,7 +108,7 @@ export default class PaymentGateway extends Component {
                         </View>
                     </View>
 
-                    <CustomBtn1 title='Continue' onPress={() => alert("something")} />
+                    <CustomBtn1 title='Continue' onPress={() => alert("Under Construction")} />
                 </ScrollView>
             </SafeAreaView>
         )
