@@ -1,10 +1,10 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import AddItem from '../screens/AddItem'
-import AddFund from '../screens/app/cashDonation/AddFund'
 import HomeScreen from '../screens/app/home/HomeScreen'
 import { Feather } from '@expo/vector-icons'
 import Colors from '../utils/colors'
+import Account from '../screens/UserAccount'
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +24,7 @@ function BottomTabNavigator() {
             <Feather name="plus-circle" size={25} color={Colors.primary}/>
         )
       }}/>
-      <Tab.Screen name="addFund" component={AddFund} options={{
+      <Tab.Screen name="addFund" component={Account} options={{
         tabBarIcon: () => (
             <Feather name="user" size={20} color={Colors.light}/>
         )
