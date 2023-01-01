@@ -5,10 +5,12 @@ import { View,
     SafeAreaView, 
     ScrollView, 
     ImageBackground,
-    Linking } from "react-native";
+    Linking, 
+    Pressable,
+    Image
+} from "react-native";
 import Colors from "../utils/colors";
 import Topic from "../components/topic";
-import Card from "./app/home/Card";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
@@ -19,7 +21,8 @@ export default class ItemDetails extends Component {
         this.state = {
             isLoading: true,
             details: [],
-            user_id: ''
+            user_id: '',
+            mapUrl: ""
         }
     }
 
@@ -53,6 +56,19 @@ export default class ItemDetails extends Component {
               isLoading: false,
               details: responseJson[0].content
             })
+
+            var location = this.state.details.location
+            const myArr = location.split(" ")
+            var newLoc = ""
+            for (let index = 0; index < myArr.length; index++) {
+                var item = myArr[index]
+                newLoc = newLoc + item
+                if ((index + 1) != myArr.length) {
+                    newLoc = newLoc + "+"
+                }
+            }
+            var link = "https://maps.google.com?q=" + newLoc
+            this.setState({mapUrl: link})
           }
           
         })
@@ -62,21 +78,36 @@ export default class ItemDetails extends Component {
         })
 
         AsyncStorage.getItem('user_id').then((value) => this.setState({user_id: value}))
+        
+    }
 
+    mapHandler = () => {
+        var location = this.state.details.location
+        const myArr = location.split(" ")
+        var newLoc = ""
+        for (let index = 0; index < myArr.length; index++) {
+            var item = myArr[index]
+            newLoc = newLoc + item
+            if ((index + 1) != myArr.length) {
+                newLoc = newLoc + "+"
+            }
+        }
+        return(newLoc)
     }
 
     render()
     {
         let { details } = this.state
+        
         return(
             <SafeAreaView style={styles.container}>
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <Topic title={'Item Details'}></Topic>
                     <View style={styles.content}>
                         <ImageBackground source={{uri: details.image}} style={styles.image}></ImageBackground>
                     </View>
 
-                    <View style={{marginBottom: 60}}>
+                    <View style={{marginBottom: 30}}>
                         <Text style={{fontSize: 20, fontWeight: 'bold', lineHeight: 30, marginBottom: 40, color: Colors.dark}}> 
                             {details.title}
                         </Text>
@@ -86,7 +117,9 @@ export default class ItemDetails extends Component {
                         </Text>
                         <Text style={styles.details}>Quantity:     {details.quantity}</Text>
                         <Text style={styles.details}>Location:    <Text style={styles.link}
-                            onPress={() => alert('map under development')}>{details.location}</Text></Text>
+                            onPress={() => {
+                                Linking.openURL(this.state.mapUrl)
+                            }}>{details.location}</Text></Text>
                         <Text style={styles.details}>Email:         <Text style={styles.link}
                             onPress={() => {
                                 var mail = details.email
@@ -95,13 +128,19 @@ export default class ItemDetails extends Component {
                             >{details.email}</Text>
                         </Text>
                     </View>
+                    
+                    <Pressable onPress={() => {
+                        Linking.openURL('https://web.facebook.com/devfreak/')
+                    }}>
+                        <Image source={require('../../assets/images/ad.png')} style={styles.ad}/>
+                    </Pressable>
 
                     <View>
-                        <Text  style={{fontWeight: 'bold', fontSize: 19, color: Colors.dark, marginVertical: 10}}> 
+                        {/*<Text  style={{fontWeight: 'bold', fontSize: 19, color: Colors.dark, marginVertical: 10}}> 
                             Similar Posts
                         </Text>
                             
-                        {/*
+                        
                         
                             ... card component goes here
                         
@@ -137,5 +176,11 @@ const styles = StyleSheet.create({
     link: {
         color: Colors.primary,
         textDecorationLine: 'underline'
+    },
+    ad: {
+        resizeMode: 'center',
+        width: '100%',
+        height: 200,
+        marginBottom: 20
     }
 })

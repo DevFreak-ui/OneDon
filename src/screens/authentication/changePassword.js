@@ -9,9 +9,6 @@ export default class ChangePass extends Component {
     constructor(props)
     {
         super(props)
-        this.state={
-
-        }
     }
 
     render(){
@@ -21,11 +18,13 @@ export default class ChangePass extends Component {
                     <Topic></Topic>
                     <Text style={styles.header}>Change Password</Text>
                     <View style={{marginVertical:Platform =='ios'? 60 : 70}}>
-                        <TypeAInput label='New Password'></TypeAInput>
-                        <TypeAInput label='Confirm'></TypeAInput>
+                        <TypeAInput label='New Password' iconName='lock-outline'></TypeAInput>
+                        <TypeAInput label='Confirm' iconName='lock-outline'></TypeAInput>
                     </View>
-                    <CustomBtn1 title='Continue' onPress={()=>alert("OKAY")} style={styles.btn}></CustomBtn1>
+                    <CustomBtn1 title='Continue' onPress={()=>alert("Under Construction")} style={styles.btn} />
+                    
                 </ScrollView>
+                <Text onPress={() => this.props.navigation.navigate('home1')} style={styles.skip}>Skip &gt;&gt; </Text>
             </SafeAreaView>
         )
     }
@@ -42,5 +41,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         maxHeight: 50,
         marginTop: 25
+    },
+    skip: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: 'black',
+        alignSelf: 'flex-end',
+        right: 10,
+        bottom: 150
     }
 })

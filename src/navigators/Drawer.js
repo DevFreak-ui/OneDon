@@ -31,7 +31,7 @@ function DrawerNav() {
       }} 
       drawerContent={props => <DrawerContent {...props}/>}
       >
-      <Drawer.Screen name="Home" component={BottomTabNavigator} 
+      <Drawer.Screen name="home1" component={BottomTabNavigator} 
         options={{
           drawerIcon: () => (
             <Feather name='home' size={15}/>
