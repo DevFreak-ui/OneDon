@@ -9,6 +9,10 @@ import ForgotPassword from '../screens/authentication/forgotPassword'
 import ItemDetails from '../screens/item_details'
 import DrawerNav from './Drawer'
 import CashActivityDetails from '../screens/app/cashDonation/CashActivityDetails'
+import PaymentGateway from '../screens/app/cashDonation/PaymentGateway'
+import UserHistory from '../screens/History'
+import Help from '../screens/HelpScreen'
+import Account from '../screens/UserAccount'
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -33,6 +37,10 @@ const Stack = () => {
         <StackNavigator.Screen name="forgotPass" component={ForgotPassword}/>
         <StackNavigator.Screen name="itemDetails" component={ItemDetails} />
         <StackNavigator.Screen name="cashActivity" component={CashActivityDetails} />
+        <StackNavigator.Screen name="paymentGateway" component={PaymentGateway} />
+        <StackNavigator.Screen name="history" component={UserHistory} />
+        <StackNavigator.Screen name="help" component={Help} />
+        <StackNavigator.Screen name="account" component={Account} />
     </StackNavigator.Navigator>
   )
 }

@@ -62,7 +62,12 @@ export default class Login extends Component{
                     alert('Login Successful');
                     const user_id = response[0].user_id;
                     this.storeID(user_id);
-                    this.props.navigation.navigate('home');
+                    if (this.state.Password == '123456') {
+                        this.props.navigation.navigate('home', {screen: 'ChangePassword'});
+                    } else {
+                        this.props.navigation.navigate('home');
+                    }
+                    
                 }else{
                     alert(response[0].Message);
                 }

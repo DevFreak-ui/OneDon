@@ -111,21 +111,12 @@ export default class CashActivityDetails extends Component {
                         </Text>
                         <Text style={styles.details}>{details.description}</Text>
 
-                    <CustomBtn1 title={'Donate'} style={{flex: 1}} onPress={()=>alert("Active")}></CustomBtn1>
+                    <CustomBtn1 title={'Donate'} style={{flex: 1}} onPress={()=>{
+                        this.props.navigation.navigate('paymentGateway')
+                    }}></CustomBtn1>
                     </View>
 
-                    <View>
-                        <Text  style={{fontWeight: 'bold', fontSize: 19, color: Colors.dark, marginVertical: 10}}> 
-                            Similar Posts
-                        </Text>
-                            
-                        {/*
-                        
-                            ... card component goes here
-                        
-                        */}
-
-                    </View>
+                    
                 </ScrollView>
             </SafeAreaView>
         )

@@ -6,7 +6,7 @@ import { withDecay } from "react-native-reanimated"
 
 
 
-const Category = () => {
+const CategoryA = () => {
     
     const [selectedCategory, setSelectedCategory] =useState()
 
@@ -29,7 +29,29 @@ const Category = () => {
     );
 }
 
-export default Category;
+const CategoryB = () => {
+    
+    const [selectedCategory, setSelectedCategory] =useState()
+
+    return (
+        <View>
+            <Text style={styles.label}>Category</Text>
+            <View  style={styles.pickerContainer}>
+                <Picker
+                    selectedValue={selectedCategory}
+                    onValueChange={(itemValue, itemIndex) =>
+                        setSelectedCategory(itemValue)
+                    }>
+                    <Picker.Item label="General" value="general" />
+                    <Picker.Item label="Technology" value="tech" />
+                    <Picker.Item label="Food" value="food" />
+                </Picker>
+            </View>
+        </View>
+    );
+}
+
+export { CategoryA, CategoryB };
 
 
 const styles = StyleSheet.create({
@@ -42,8 +64,8 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     label: {
-        fontSize: 18, 
-        fontWeight: 'bold', 
+        fontSize: 16, 
+        fontWeight: '500', 
         color: Colors.light, 
         marginVertical: 10
     }
