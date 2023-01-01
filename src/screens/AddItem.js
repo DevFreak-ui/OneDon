@@ -12,6 +12,7 @@ import { Feather } from '@expo/vector-icons'
 import Topic from '../components/topic'
 import * as ImagePicker from 'expo-image-picker';
 import { CategoryA } from '../components/categorySelector'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 export default class AddItem extends Component {
@@ -23,7 +24,8 @@ export default class AddItem extends Component {
             title: '',
             category: 'general',
             location: '',
-            quantity: 1
+            quantity: 1,
+            user_id: ""
         }
     }
 
@@ -43,17 +45,17 @@ export default class AddItem extends Component {
         }
     };
 
-    
-
     // INSERT FUNCTION
     InsertFunc = ({navigation}) => {
+
+        AsyncStorage.getItem('user_id').then((value) => this.setState({user_id: value}))
 
         var title = this.state.title
         var category = this.state.category
         var location = this.state.location
         var quantity = this.state.quantity
         var imgUrl = this.state.image.uri
-        var user_id = 2
+        var user_id = this.state.user_id
 
         var InsertUrl = "http://onedon.atwebpages.com/api/addItem.php"
         var headers = {
