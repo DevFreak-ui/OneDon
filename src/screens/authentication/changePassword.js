@@ -39,7 +39,7 @@ export default class ChangePass extends Component {
                 }
 
                 fetch(
-                    "http://onedon.atwebpages.com/api/changePassword.php",
+                    "https://onedonation.000webhostapp.com/api/changePassword.php",
                     {
                         method: "POST",
                         headers: headers,
@@ -85,7 +85,7 @@ export default class ChangePass extends Component {
                     <CustomBtn1 title='Continue' onPress={this.updateFunc} style={styles.btn} />
                     
                 </ScrollView>
-                <Text onPress={() => this.props.navigation.navigate('home1')} style={styles.skip}>Skip &gt;&gt; </Text>
+                <Text onPress={() => this.props.navigation.navigate('Home')} style={styles.skip}>Skip &gt;&gt; </Text>
             </SafeAreaView>
         )
     }

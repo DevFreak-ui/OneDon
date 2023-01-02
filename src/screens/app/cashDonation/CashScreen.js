@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Header from './Header'
 import Card from './Card'
+import Loader from '../../../components/Loader'
 
 
 export default class CashScreen extends Component {
@@ -19,7 +20,7 @@ export default class CashScreen extends Component {
   
 
   componentDidMount () {
-    fetch("http://onedon.atwebpages.com/api/cash.php")
+    fetch("https://onedonation.000webhostapp.com/api/cash.php")
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -44,6 +45,7 @@ export default class CashScreen extends Component {
   {
     let { dataSource } = this.state
     return(
+      <>
       <View style={styles.container}>
          <Header />
          <View style={styles.cntContainer}>
@@ -56,6 +58,8 @@ export default class CashScreen extends Component {
             />
          </View>
      </View>
+     { this.state.isLoading ? <Loader /> : null }
+     </>
     )
   }
 

@@ -12,6 +12,7 @@ import { View,
 import Colors from "../utils/colors";
 import Topic from "../components/topic";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Loader from "../components/Loader";
 
 
 export default class ItemDetails extends Component {
@@ -28,8 +29,8 @@ export default class ItemDetails extends Component {
 
 
     componentDidMount = () => {
-
-        var fetchUrl = "http://onedon.atwebpages.com/api/itemDetails.php"
+        
+        var fetchUrl = "https://onedonation.000webhostapp.com/api/itemDetails.php"
         var data = {
             pid: this.props.route.params.pid
         }
@@ -100,6 +101,7 @@ export default class ItemDetails extends Component {
         let { details } = this.state
         
         return(
+            <>
             <SafeAreaView style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Topic title={'Item Details'}></Topic>
@@ -149,6 +151,8 @@ export default class ItemDetails extends Component {
                     </View>
                 </ScrollView>
             </SafeAreaView>
+            { this.state.isLoading ? <Loader /> : null }
+            </>
         )
     }
 }
