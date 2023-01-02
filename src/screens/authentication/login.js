@@ -5,6 +5,7 @@ import Colors from '../../utils/colors';
 import TypeAInput from '../../components/customInput';
 import CustomBtn1 from '../../components/customButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Loader from '../../components/Loader';
 
 
 export default class Login extends Component{
@@ -12,7 +13,11 @@ export default class Login extends Component{
     constructor(props)
     {
         super(props);
-        this.state={Email:'', Password:''}
+        this.state={
+            Email:'', 
+            Password:'',
+            loginPending: false
+        }
     }
 
     storeID = (user_id) => {
@@ -20,6 +25,7 @@ export default class Login extends Component{
     }
 
     login = () => {
+        
         var email = this.state.Email;
         var password = this.state.Password;
 
@@ -35,7 +41,8 @@ export default class Login extends Component{
         }
         else{
             
-            var loginApUrl = 'http://onedon.atwebpages.com/api/login.php';
+            this.setState({loginPending: true})
+            var loginApUrl = 'https://onedonation.000webhostapp.com/api/login.php';
             var headers = {
                 'Accept': 'aplication/json',
                 'Content-Type': 'application.json'
@@ -58,8 +65,8 @@ export default class Login extends Component{
             .then((response)=>{
 
                 // If authenticted
+                this.setState({loginPending: false})
                 if (response[0].Message == 'Success') {
-                    alert('Login Successful');
                     const user_id = response[0].user_id;
                     this.storeID(user_id);
                     if (this.state.Password == '123456') {
@@ -73,6 +80,7 @@ export default class Login extends Component{
                 }
             })
             .catch((error)=>{
+                this.setState({loginPending: false})
                 alert('Error: '+ error);
             })
 
@@ -82,6 +90,7 @@ export default class Login extends Component{
     render()
     {
         return(
+            <>
             <SafeAreaView  style={styles.authcontainer}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <StatusBar style="auto" />
@@ -121,6 +130,8 @@ export default class Login extends Component{
                     </Text>
                 </ScrollView>
             </SafeAreaView>
+            {this.state.loginPending ? <Loader /> : null}
+            </>
         )
     }
 }

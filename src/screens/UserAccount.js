@@ -15,7 +15,7 @@ export default class Account extends Component {
     render() {
 
         let Uri = require('../../assets/images/accBg.jpg')
-        let userImage = require('../../assets/images//profile.jpeg')
+        let userImage = require('../../assets/images/profile.jpeg')
         return(
             <SafeAreaView style={styles.container}>
                 <ImageBackground resizeMode='cover' source={Uri} style={styles.container}>

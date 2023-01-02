@@ -19,7 +19,7 @@ export default class HomeScreen extends Component {
   
 
   componentDidMount () {
-    fetch("http://onedon.atwebpages.com/api/items.php")
+    fetch("https://onedonation.000webhostapp.com/api/items.php")
     .then((response) => response.json())
     .then((responseJson) => {
 

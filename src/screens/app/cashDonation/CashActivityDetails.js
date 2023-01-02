@@ -12,6 +12,7 @@ import { SimpleLineIcons } from '@expo/vector-icons'
 import fontStyle from '../../../utils/fontStyles'
 import CustomBtn1 from "../../../components/customButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Loader from "../../../components/Loader";
 
 
 export default class CashActivityDetails extends Component {
@@ -28,7 +29,7 @@ export default class CashActivityDetails extends Component {
 
     componentDidMount = () => {
 
-        var fetchUrl = "http://onedon.atwebpages.com/api/cashActivityDetails.php"
+        var fetchUrl = "https://onedonation.000webhostapp.com/api/cashActivityDetails.php"
         var data = {
             aid: this.props.route.params.aid
         }
@@ -71,6 +72,7 @@ export default class CashActivityDetails extends Component {
         let { details } = this.state
         var prog = ((details.pamount)/(details.tamount))*100
         return(
+            <>
             <SafeAreaView style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Topic title={'Details'}></Topic>
@@ -119,6 +121,8 @@ export default class CashActivityDetails extends Component {
                     
                 </ScrollView>
             </SafeAreaView>
+            { this.state.isLoading ? <Loader /> : null }
+            </>
         )
     }
 }

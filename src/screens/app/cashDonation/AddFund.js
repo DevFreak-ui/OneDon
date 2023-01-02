@@ -13,6 +13,7 @@ import { Feather } from "@expo/vector-icons"
 import { TypeBInput } from "../../../components/customInput"
 import CustomBtn1 from "../../../components/customButton"
 import { CategoryB } from "../../../components/categorySelector"
+import ContentLoader from "../../../components/LoadContent"
 
 export default class AddFund extends Component {
     constructor(props)
@@ -24,6 +25,7 @@ export default class AddFund extends Component {
             title: '',
             category: '',
             description: '',
+            isUploading: false
         }
     }
 
@@ -33,6 +35,7 @@ export default class AddFund extends Component {
         let { image } = this.state.image
 
         return(
+            <>
             <SafeAreaView style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Topic title={'Add Fundraising'} />
@@ -68,6 +71,8 @@ export default class AddFund extends Component {
                     <CustomBtn1 title='Post' onPress={() => alert("something")} />
                 </ScrollView>
             </SafeAreaView>
+            { this.state.isUploading ? <ContentLoader /> : null }
+            </>
         )
     }
 }

@@ -13,6 +13,7 @@ import Topic from '../components/topic'
 import * as ImagePicker from 'expo-image-picker';
 import { CategoryA } from '../components/categorySelector'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import ContentLoader from '../components/LoadContent'
 
 
 export default class AddItem extends Component {
@@ -25,7 +26,8 @@ export default class AddItem extends Component {
             category: 'general',
             location: '',
             quantity: 1,
-            user_id: ""
+            user_id: "",
+            isUploading: false
         }
     }
 
@@ -38,8 +40,6 @@ export default class AddItem extends Component {
         quality: 1,
         });
 
-        console.log(result);
-
         if (!result.canceled) {
             this.setState({ image: result});
         }
@@ -47,50 +47,52 @@ export default class AddItem extends Component {
 
     // INSERT FUNCTION
     InsertFunc = ({navigation}) => {
+        this.setState({isUploading: true})
+        AsyncStorage.getItem('user_id').then((value) => {
+            this.setState({user_id: value})
 
-        AsyncStorage.getItem('user_id').then((value) => this.setState({user_id: value}))
+            var title = this.state.title
+            var category = this.state.category
+            var location = this.state.location
+            var quantity = this.state.quantity
+            var imgUrl = this.state.image.assets[0].uri
+            var user_id = this.state.user_id
 
-        var title = this.state.title
-        var category = this.state.category
-        var location = this.state.location
-        var quantity = this.state.quantity
-        var imgUrl = this.state.image.uri
-        var user_id = this.state.user_id
-
-        var InsertUrl = "http://onedon.atwebpages.com/api/addItem.php"
-        var headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application.json'
-        }
-        var data = {
-            title: title,
-            category: category,
-            location: location,
-            quantity: quantity,
-            imgUrl: imgUrl,
-            user_id: user_id
-        }
-        fetch (
-            InsertUrl,
-            {
-                method: "POST",
-                headers: headers,
-                body: JSON.stringify(data)
-            }
-        )
-        .then((response) => response.json())
-        .then((response) => {
-            if (response[0].message != 'success') {
-                alert(response[0].message);
-            }else {
-                alert('Saved!');
-                this.setState({title: '', location: '', quantity: '', image: null})
-                this.props.navigation.navigate('Home');
-            }
+            var InsertUrl = "https://onedonation.000webhostapp.com/api/addItem.php";
+            
+            let data = new FormData();
+            data.append('submit','ok');
+            data.append('title', title);
+            data.append('category', category);
+            data.append('location', location);
+            data.append('quantity', quantity);
+            data.append('user_id', user_id);
+            data.append('file',{type: 'image/jpg', uri:imgUrl, name:'uploadimagetmp.jpg'});
+            
+            fetch (
+                InsertUrl,
+                {
+                    method: "POST",
+                    body: data
+                }
+            )
+            .then((response) => response.json())
+            .then((response) => {
+                this.setState({isUploading: false})
+                if (response[0].message != 'success') {
+                    alert(response[0].message);
+                }else {
+                    alert('Saved!');
+                    this.setState({title: '', location: '', quantity: '', image: null})
+                    this.props.navigation.goBack();
+                }
+            })
+            .catch((error) => {
+                this.setState({isUploading: false})
+                alert('Error: ' + error);
+            })
         })
-        .catch((error) => {
-            alert('Error: ' + error);
-        })
+        
 
     }
 
@@ -98,6 +100,7 @@ export default class AddItem extends Component {
     {
         let { image } = this.state
         return(
+            <>
             <SafeAreaView style={styles.container}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Topic title={'Add Item'} />
@@ -106,7 +109,7 @@ export default class AddItem extends Component {
                         <Feather name='plus' size={16} />
                         <Text>Choose Image</Text>
                     </Pressable>
-                    {image && <Image source={{ uri: image.uri }} style={styles.selected} />}
+                    {image && <Image source={{ uri: image.assets[0].uri }} style={styles.selected} />}
 
                     <TypeBInput 
                         label='Item Description' 
@@ -136,6 +139,8 @@ export default class AddItem extends Component {
                     <CustomBtn1 title='Donate' onPress={this.InsertFunc} />
                 </ScrollView>
             </SafeAreaView>
+            { this.state.isUploading ? <ContentLoader /> : null }
+            </>
         )
     }
 }
@@ -154,5 +159,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20
+    },
+    selected: {
+        width: 150,
+        height: 150,
+        borderRadius: 10,
+        borderColor: "#ffffff",
+        borderStyle: 'solid',
+        borderWidth: 8
     }
 })
