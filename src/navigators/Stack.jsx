@@ -13,6 +13,7 @@ import PaymentGateway from '../screens/app/cashDonation/PaymentGateway'
 import UserHistory from '../screens/History'
 import Help from '../screens/HelpScreen'
 import Account from '../screens/UserAccount'
+import Messenger from '../screens/CourierScreen'
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -41,6 +42,7 @@ const Stack = () => {
         <StackNavigator.Screen name="history" component={UserHistory} />
         <StackNavigator.Screen name="help" component={Help} />
         <StackNavigator.Screen name="account" component={Account} />
+        <StackNavigator.Screen name="mregister" component={Messenger} />
     </StackNavigator.Navigator>
   )
 }

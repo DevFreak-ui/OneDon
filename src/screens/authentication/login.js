@@ -126,7 +126,12 @@ export default class Login extends Component{
                     </View>
     
                     <CustomBtn1 title={'Login'} style={{flex: 1}} onPress={this.login}></CustomBtn1>
-                    <Text style={{fontSize: 17, textAlign: 'center'}}>First time only password: 123456 
+                    <Text style={{fontSize: 15.5, textAlign: 'center',marginVertical: 10}}>First time only password: 123456 </Text>
+                    <View style={styles.hline}></View>
+                    <Text style={{fontSize: 15.5, textAlign: 'center'}}>
+                        <Text style={{color: Colors.primary, fontWeight: '700'}} 
+                        onPress={() => this.props.navigation.navigate('mregister')}> Sign-Up </Text>
+                        as a Courier
                     </Text>
                 </ScrollView>
             </SafeAreaView>
@@ -161,6 +166,13 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end', 
         fontSize: 16,
         marginBottom: 50
+    },
+    hline: {
+        width: '15%',
+        height: 1.3,
+        backgroundColor: 'rgba(0,0,0,.4)',
+        alignSelf: 'center',
+        marginVertical: 10
     }
 })
 

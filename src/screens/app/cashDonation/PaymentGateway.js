@@ -35,7 +35,6 @@ export default class PaymentGateway extends Component {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Topic title={'Add Fundraising'} />
 
-                    
                     <Text style={styles.lbl}>Enter Amount</Text>
                     <View style={[styles.inputContainer2]}>
                         <Icon name="currency-usd" size={30} />
