@@ -13,6 +13,7 @@ import Colors from "../utils/colors";
 import Topic from "../components/topic";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Loader from "../components/Loader";
+import CustomBtn1 from "../components/customButton";
 
 
 export default class ItemDetails extends Component {
@@ -125,11 +126,17 @@ export default class ItemDetails extends Component {
                         <Text style={styles.details}>Email:         <Text style={styles.link}
                             onPress={() => {
                                 var mail = details.email
-                                Linking.openURL('mailto:' + mail +'?subject=Interested&body=...blah blah')}
+                                var pname = details.title
+                                var message = 'Hi, I want to know if your item; "' + pname + '" on OneDonation is  still available. Thank You'
+                                Linking.openURL('mailto:' + mail +'?subject=Interested&body='+ message)}
                             }
                             >{details.email}</Text>
                         </Text>
                     </View>
+
+                    <CustomBtn1 
+                    onPress={() => alert('Under construction; Navigate to a screen with verified courier profiles')}
+                    title="Pick a Messenger" />
                     
                     <Pressable onPress={() => {
                         Linking.openURL('https://web.facebook.com/devfreak/')
@@ -137,18 +144,7 @@ export default class ItemDetails extends Component {
                         <Image source={require('../../assets/images/ad.png')} style={styles.ad}/>
                     </Pressable>
 
-                    <View>
-                        {/*<Text  style={{fontWeight: 'bold', fontSize: 19, color: Colors.dark, marginVertical: 10}}> 
-                            Similar Posts
-                        </Text>
-                            
-                        
-                        
-                            ... card component goes here
-                        
-                        */}
-
-                    </View>
+                    
                 </ScrollView>
             </SafeAreaView>
             { this.state.isLoading ? <Loader /> : null }

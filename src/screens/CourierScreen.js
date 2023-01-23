@@ -23,7 +23,8 @@ export default class Messenger extends Component {
                     <View>
                         <TypeAInput label={'First Name'}/>
                         <TypeAInput label={'Surname'}/>
-                        <TypeAInput label={'Address'}/>
+                        <TypeAInput label={'Address line 1'}/>
+                        <TypeAInput label={'Address line 2'}/>
                         <TypeAInput label={'Email'} placeholder={'exampe@gmail.com'} keyboardType={'email-address'}/>
                         <TypeAInput label={'Mobile'} placeholder={'+235 _ _ _ _'} keyboardType={'phone-pad'}/>
                     </View>
