@@ -13,6 +13,7 @@ import Colors from "../utils/colors";
 import Topic from "../components/topic";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Loader from "../components/Loader";
+import CustomBtn1 from "../components/customButton";
 
 
 export default class ItemDetails extends Component {
@@ -125,12 +126,18 @@ export default class ItemDetails extends Component {
                         <Text style={styles.details}>Email:         <Text style={styles.link}
                             onPress={() => {
                                 var mail = details.email
-                                Linking.openURL('mailto:' + mail +'?subject=Interested&body=...blah blah')}
+                                var message = 'Hi, I want to know if your item; "' + details.title +  '" on OneDonation is still available. Thank You'
+                                Linking.openURL('mailto:' + mail +'?subject=Interested&body=' + message)}
                             }
                             >{details.email}</Text>
                         </Text>
                     </View>
                     
+                    <CustomBtn1
+                        title='Pick a Messenger'
+                        onPress={() => alert('Another screen')}
+                    />
+
                     <Pressable onPress={() => {
                         Linking.openURL('https://web.facebook.com/devfreak/')
                     }}>

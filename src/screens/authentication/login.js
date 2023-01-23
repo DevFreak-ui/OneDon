@@ -130,7 +130,10 @@ export default class Login extends Component{
                     <View style={styles.hline}></View>
                     <Text style={{fontSize: 15.5, textAlign: 'center'}}>
                         <Text style={{color: Colors.primary, fontWeight: '700'}} 
-                        onPress={() => this.props.navigation.navigate('mregister')}> Sign-Up </Text>
+                        onPress={() => this.props.navigation.navigate('mregister')}> Sign-Up </Text> or
+                        <Text  style={{color: Colors.primary, fontWeight: '700'}}
+                        onPress={() => this.props.navigation.navigate('CourierLogin')}
+                        > Login </Text>
                         as a Courier
                     </Text>
                 </ScrollView>
