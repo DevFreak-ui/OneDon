@@ -134,7 +134,7 @@ export default class Login extends Component{
                         <Text  style={{color: Colors.primary, fontWeight: '700'}}
                         onPress={() => this.props.navigation.navigate('CourierLogin')}
                         > Login </Text>
-                        as a Courier
+                        as a Driver
                     </Text>
                 </ScrollView>
             </SafeAreaView>

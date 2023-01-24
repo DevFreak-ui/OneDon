@@ -135,13 +135,9 @@ export default class ItemDetails extends Component {
                     </View>
 
                     <CustomBtn1 
-                    onPress={() => alert('Under construction; Navigate to a screen with verified courier profiles')}
-                    title="Pick a Messenger" />
+                    onPress={() => this.props.navigation.navigate('courierList')}
+                    title="Pick a Driver" />
                     
-                    <CustomBtn1
-                        title='Pick a Messenger'
-                        onPress={() => alert('Another screen')}
-                    />
 
                     <Pressable onPress={() => {
                         Linking.openURL('https://web.facebook.com/devfreak/')

@@ -15,6 +15,7 @@ import Help from '../screens/HelpScreen'
 import Account from '../screens/UserAccount'
 import Messenger from '../screens/CourierScreen'
 import CourierLogin from '../screens/authentication/CourierLogin'
+import CourierList from '../screens/CourierList'
 
 const StackNavigator = createNativeStackNavigator()
 
@@ -45,6 +46,7 @@ const Stack = () => {
         <StackNavigator.Screen name="account" component={Account} />
         <StackNavigator.Screen name="mregister" component={Messenger} />
         <StackNavigator.Screen name="CourierLogin" component={CourierLogin} />
+        <StackNavigator.Screen name="courierList" component={CourierList} />
     </StackNavigator.Navigator>
   )
 }

@@ -19,7 +19,7 @@ export default class Messenger extends Component {
         return(
             <SafeAreaView style={styles.authcontainer}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <Topic title={'Courier SignUp'}/>
+                    <Topic title={'Account SignUp'}/>
                     <View>
                         <TypeAInput label={'First Name'}/>
                         <TypeAInput label={'Surname'}/>
